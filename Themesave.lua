@@ -129,7 +129,9 @@ local ThemeManager = {} do
 			end
 		end)
         groupbox:AddButton("Unload",function ()
-            Library:Unload()
+            if game:GetService("CoreGui"):FindFirstChild("ScreenGui") then
+		game:GetService("CoreGui"):FindFirstChild("ScreenGui")
+	    end
         end)
 		ThemeManager:LoadDefault()
 
