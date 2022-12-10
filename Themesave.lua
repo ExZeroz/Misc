@@ -1,7 +1,7 @@
 local httpService = game:GetService('HttpService')
 local ThemeManager = {} do
 	ThemeManager.Folder = 'Xeris Hub'
-	-- if not isfolder(ThemeManager.Folder) then makefolder(ThemeManager.Folder) end
+
 
 	ThemeManager.Library = nil
 	ThemeManager.BuiltInThemes = {
@@ -88,7 +88,7 @@ local ThemeManager = {} do
 
 		table.sort(ThemesArray, function(a, b) return self.BuiltInThemes[a][1] < self.BuiltInThemes[b][1] end)
 
-		groupbox:AddDivider()
+
 		groupbox:AddDropdown('ThemeManager_ThemeList', { Text = 'Theme list', Values = ThemesArray, Default = 1 })
 
 		groupbox:AddButton('Set as default', function()
@@ -100,7 +100,7 @@ local ThemeManager = {} do
 			self:ApplyTheme(Options.ThemeManager_ThemeList.Value)
 		end)
 
-		groupbox:AddDivider()
+
 		groupbox:AddDropdown('ThemeManager_CustomThemeList', { Text = 'Custom themes', Values = self:ReloadCustomThemes(), AllowNull = true, Default = 1 })
 		groupbox:AddInput('ThemeManager_CustomThemeName', { Text = 'Custom theme name' })
 
@@ -128,6 +128,9 @@ local ThemeManager = {} do
 				self.Library:Notify(string.format('Set default theme to %q', Options.ThemeManager_CustomThemeList.Value))
 			end
 		end)
+        groupbox:AddButton("Unload",function ()
+            groupbox:Unload()
+        end)
 
 		ThemeManager:LoadDefault()
 
